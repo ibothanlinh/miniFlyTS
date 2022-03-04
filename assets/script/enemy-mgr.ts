@@ -22,9 +22,14 @@ export default class NewClass extends cc.Component {
     
     scoreCr = 0;
 
+    // enemyarr = [];
+
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {}
+
+    // protected onLoad(): void {
+    //     cc.director.getCollisionManager().enabled = true;
+    // }
 
     start () {
         this.resetScore();

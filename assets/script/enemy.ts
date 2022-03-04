@@ -9,6 +9,11 @@ const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class enemy extends cc.Component {
+    // @property({
+    //     type: cc.Node
+    // })
+    // player: cc.Node = null;
+
     dir = 0;
     speed_x = 0;
     speed_y = 0;
@@ -22,17 +27,18 @@ export default class enemy extends cc.Component {
     // onLoad () {}
     protected onLoad(): void {
         this.enabled = false;
-        this.enabled = false;
         this.dir = Math.random() > 0.5 ? 1 : -1;
         this.speed_x = 50 + Math.floor(120*Math.random());
         this.speed_y = 20 + Math.floor(50 * Math.random());
         this.hp = 20 + Math.floor(30 * Math.random());
+        this.node.getChildByName('hp').getComponent(cc.Label).string = this.hp + '';
     }
 
-    start(){
-        this.hpLab = this.node.getComponentInChildren(cc.Label);
-        this.hpLab.string = this.hp + '';
-    }
+    // start(){
+    //     this.hpLab = this.node.getComponentInChildren(cc.Label);
+    //     this.hpLab.string = this.hp + '';
+    //     // cc.log(typeof this.player.group);
+    // }
 
     init (game){
         this.game = game;
@@ -43,6 +49,10 @@ export default class enemy extends cc.Component {
     reuse (game) {
         this.init(game);
     }
+    // getPlayDistance(){
+    //     var playerPos = this.player.getPosition();
+
+    // }
 
     onCollisionEnter (other, self){
         this.hp -= 1;
@@ -51,7 +61,14 @@ export default class enemy extends cc.Component {
             this.game.gainScore();
             this.collect = true;
         } 
-        this.hpLab.string = this.hp + '';
+        this.node.getChildByName('hp').getComponent(cc.Label).string = this.hp + '';
+        // cc.log('other: ' , other.group);
+        // cc.log('self: ', self.group);
+
+        // var enemy = self;
+        // if (other === this.player.group){
+
+        // }
     }
 
     protected update(dt: number): void {

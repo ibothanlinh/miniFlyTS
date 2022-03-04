@@ -8,12 +8,17 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class NewClass extends cc.Component {
+export default class touch_move extends cc.Component {
 
     @property({
         type: cc.Node
     })
     player: cc.Node = null;
+
+    @property({
+        type: cc.Prefab
+    })
+    popup: cc.Prefab = null;
 
     // LIFE-CYCLE CALLBACKS:
 
@@ -28,6 +33,13 @@ export default class NewClass extends cc.Component {
             this.player.x += delta.x;
             this.player.y += delta.y;
         }, this);
+    }
+
+    endMove(){
+        this.node.off('touchmove');
+        cc.log('asd');
+        let gameOver = cc.instantiate(this.popup);
+        this.node.addChild(gameOver)
     }
 
     update (dt) {
