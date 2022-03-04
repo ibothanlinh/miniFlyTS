@@ -28,11 +28,6 @@ export default class NewClass extends cc.Component {
             this.player.x += delta.x;
             this.player.y += delta.y;
         }, this);
-        cc.log(cc.winSize.width/2);
-        cc.log(-cc.winSize.width/2);
-        cc.log(this.player.x, this.player.y);
-        cc.log(cc.winSize.height/2);
-        cc.log(-cc.winSize.height/2);
     }
 
     update (dt) {
@@ -47,8 +42,6 @@ export default class NewClass extends cc.Component {
         } else if (this.player.y > cc.winSize.height/2){
             this.player.y = cc.winSize.height;
         }
-
-        cc.log(this.player.x, this.player.y);
 
     }
 

@@ -7,7 +7,8 @@
     "background",
     "player",
     "bullet",
-    "enemy"
+    "enemy",
+    "score"
   ],
   "collision-matrix": [
     [
@@ -29,13 +30,23 @@
       false,
       false,
       false,
-      true
+      true,
+      false
     ],
     [
       false,
       false,
       true,
       true,
+      false,
+      false
+    ],
+    [
+      false,
+      false,
+      false,
+      false,
+      false,
       false
     ]
   ],

@@ -8,21 +8,25 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class NewClass extends cc.Component {
+export default class enemy extends cc.Component {
     dir = 0;
     speed_x = 0;
     speed_y = 0;
     hp = 0;
     hpLab = null;
+    game = null;
+    collect = false;
 
     // LIFE-CYCLE CALLBACKS:
 
     // onLoad () {}
     protected onLoad(): void {
+        this.enabled = false;
+        this.enabled = false;
         this.dir = Math.random() > 0.5 ? 1 : -1;
         this.speed_x = 50 + Math.floor(120*Math.random());
         this.speed_y = 20 + Math.floor(50 * Math.random());
-        this.hp = 40 + Math.floor(60 * Math.random());
+        this.hp = 20 + Math.floor(30 * Math.random());
     }
 
     start(){
@@ -30,9 +34,23 @@ export default class NewClass extends cc.Component {
         this.hpLab.string = this.hp + '';
     }
 
+    init (game){
+        this.game = game;
+        this.enabled = true;
+        this.collect = false
+    }
+
+    reuse (game) {
+        this.init(game);
+    }
+
     onCollisionEnter (other, self){
         this.hp -= 1;
-        if (this.hp <= 0) this.node.destroy();
+        if (this.hp <= 0 && !this.collect){
+            this.node.destroy();
+            this.game.gainScore();
+            this.collect = true;
+        } 
         this.hpLab.string = this.hp + '';
     }
 
