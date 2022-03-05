@@ -21,6 +21,7 @@ export default class enemy extends cc.Component {
     hpLab = null;
     game = null;
     collect = false;
+    key = 0;
 
     // LIFE-CYCLE CALLBACKS:
 
@@ -40,14 +41,15 @@ export default class enemy extends cc.Component {
     //     // cc.log(typeof this.player.group);
     // }
 
-    init (game){
+    init (game, key){
         this.game = game;
+        this.key = key;
         this.enabled = true;
         this.collect = false
     }
 
-    reuse (game) {
-        this.init(game);
+    reuse (game, key) {
+        this.init(game, key);
     }
     // getPlayDistance(){
     //     var playerPos = this.player.getPosition();
@@ -57,7 +59,7 @@ export default class enemy extends cc.Component {
     onCollisionEnter (other, self){
         this.hp -= 1;
         if (this.hp <= 0 && !this.collect){
-            this.node.destroy();
+            this.game.destroyEnemy(this.key);
             this.game.gainScore();
             this.collect = true;
         } 

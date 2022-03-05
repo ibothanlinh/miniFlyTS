@@ -8,7 +8,7 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class NewClass extends cc.Component {
+export default class bkCamera extends cc.Component {
 
     // LIFE-CYCLE CALLBACKS:
 
@@ -22,6 +22,10 @@ export default class NewClass extends cc.Component {
             this.node.y = 0;
           })
       ).start();
+    }
+
+    stopMove(){
+      this.node.stopAllActions();
     }
 
     // start () {

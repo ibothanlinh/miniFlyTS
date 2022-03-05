@@ -8,7 +8,7 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class NewClass extends cc.Component {
+export default class bullet_mgr extends cc.Component {
     @property({
         type: cc.Prefab
     })
@@ -39,12 +39,15 @@ export default class NewClass extends cc.Component {
     }
 
     createManyBullet (){
-        let px = this.player.x;
-        let py = this.player.y + 80;
-        let offset = 45;
-        this.createOneBullet(px, py);
-        this.createOneBullet(px + offset, py);
-        this.createOneBullet(px - offset, py);
+        if (this.pool){
+            let px = this.player.x;
+            let py = this.player.y + 80;
+            let offset = 45;
+            this.createOneBullet(px, py);
+            this.createOneBullet(px + offset, py);
+            this.createOneBullet(px - offset, py);
+        }
+        
     }
 
     createOneBullet (x, y) {

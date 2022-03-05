@@ -16,7 +16,12 @@ export default class NewClass extends cc.Component {
     // onLoad () {}
 
     start () {
-        this.highest_score = 10;
+        // this.userData = JSON.parse(cc.sys.getItem('userData'));
+        var userData = JSON.parse(cc.sys.localStorage.getItem('userData'));
+
+        if (userData){
+            this.highest_score = userData.score;
+        }    
         this.node.getChildByName('Highest_score').getComponent(cc.Label).string = 'SCORE: ' + this.highest_score.toString();
     }
     onStartGame () {

@@ -18,21 +18,9 @@ export default class NewClass extends cc.Component {
     })
     canvas: touch_move = null;
 
-    @property({
-        type: cc.Prefab
-    })
-    popup: cc.Prefab = null;
-    
-
-    start () {
-
-    }
 
     onCollisionEnter (other, self){
-        this.canvas.endMove();
-        
-        
-        
+        this.canvas.endGame();
         // gameOver.setPosition(cc.v2(0,0));
         // cc.log(gameOver.x, gameOver.y);
     }

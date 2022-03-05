@@ -97,9 +97,6 @@
       },
       {
         "__id__": 25
-      },
-      {
-        "__id__": 26
       }
     ],
     "_prefab": null,
@@ -1011,6 +1008,15 @@
       "__id__": 2
     },
     "_enabled": true,
+    "enemy": {
+      "__id__": 14
+    },
+    "bullet": {
+      "__id__": 18
+    },
+    "backGround": {
+      "__id__": 12
+    },
     "player": {
       "__id__": 19
     },
@@ -1035,19 +1041,6 @@
     "_fitWidth": true,
     "_fitHeight": false,
     "_id": "3bO4BH09RNg6id90PdkdDv"
-  },
-  {
-    "__type__": "af529bsh4RBG4NQWFDH3Hzy",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 2
-    },
-    "_enabled": true,
-    "popup": {
-      "__uuid__": "17c9c670-1f96-407b-ad99-d5315bf08c70"
-    },
-    "_id": "eb/KzR7yhLQL1mnLVsuJ2J"
   },
   {
     "__type__": "cc.Widget",

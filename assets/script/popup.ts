@@ -8,10 +8,27 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class popup extends cc.Component {
+export default class popupGameOver extends cc.Component {
+    @property({
+        type: cc.Label
+    })
+    score: cc.Label = null;
 
-    gameOver(score:number){
-        cc.log(score);
+    @property({
+        type: cc.Label
+    })
+    h_Score: cc.Label = null;
+
+    loadGame(){
+        cc.director.loadScene('game');
+    }
+
+    heighestScore(heighestScore){
+        this.h_Score.string = `HIGHEST SCORE: ${heighestScore.score}`;
+    }
+
+    scoreCr(score: number){
+        this.score.string = `SCORE: ${score}`;
     }
 
     // update (dt) {}

@@ -9,7 +9,7 @@ import enemy from "./enemy";
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class NewClass extends cc.Component {
+export default class enemy_mgr extends cc.Component {
     @property({
         type: cc.Prefab
     })
@@ -22,7 +22,9 @@ export default class NewClass extends cc.Component {
     
     scoreCr = 0;
 
-    // enemyarr = [];
+    enemyarr = [];
+    lenghtArr = 0;
+    isplaying = false;
 
     // LIFE-CYCLE CALLBACKS:
 
@@ -34,13 +36,32 @@ export default class NewClass extends cc.Component {
     start () {
         this.resetScore();
         this.schedule(this.createOneEnemy, 4);
+        this.isplaying = true;
     }
     createOneEnemy () {
-        let e = cc.instantiate(this.enemy);
-        e.parent = this.node;
-        e.x = -300 + 600 * Math.random();
-        e.y = 750;
-        e.getComponent(enemy).init(this);
+        if (this.isplaying){
+            let e = cc.instantiate(this.enemy);
+            e.parent = this.node;
+            e.x = -300 + 600 * Math.random();
+            e.y = 750;
+            this.lenghtArr = this.enemyarr.push(e);
+            cc.log(this.enemyarr);
+            e.getComponent(enemy).init(this, this.lenghtArr-1);
+        }
+        
+    }
+
+    destroyEnemy(key){
+        this.enemyarr[key].destroy();
+        cc.log('key: ', key);
+    }
+
+    detroyALLEnemy(){
+        this.isplaying = false;
+        for (const key in this.enemyarr) {
+            this.enemyarr[key].destroy();
+            cc.log('stop')
+        }
     }
 
     gainScore(){
